@@ -119,7 +119,11 @@ bitexpand_table[256] =
         0x5500, 0x5501, 0x5504, 0x5505, 0x5510, 0x5511, 0x5514, 0x5515,
         0x5540, 0x5541, 0x5544, 0x5545, 0x5550, 0x5551, 0x5554, 0x5555
 };
+
+#define	EXPAND_BITS(x)	bitexpand_table[x]
+
 #else	/* SMCECC_USE_LOOKUPS */
+
 #define	EXPAND_BITS(x)	((((x) & 0x80) << (14-7)) \
 			| (((x) & 0x40) << (12-6)) \
 			| (((x) & 0x20) << (10-5)) \
@@ -165,11 +169,7 @@ smecc_compute
 	/*
 	 * Interlace bits
 	 */
-#ifdef	SMCECC_USE_LOOKUPS
-	lp = (bitexpand_table[lp_odd] << 1) | bitexpand_table[lp_even];
-#else
 	lp = (EXPAND_BITS(lp_odd) << 1) | EXPAND_BITS(lp_even);
-#endif
 
 	return (SMECC_CP_MAKE(~cp & SMECC_PARITY_CP) | SMECC_LP_MAKE(~lp))
 		| SMECC_FILLER;
