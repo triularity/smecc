@@ -177,4 +177,24 @@ if(SMECC_COMPILE_TESTS)
 	target_link_libraries(
 		test_correctable
 			smecc)
+
+	#
+	# Multiple Compute ECC sizes
+	#
+	add_executable(
+		test_multi_compute_size
+			tests/multi_compute_size/test_multi_compute_size.c
+			${SMECC_HEADER_FILES})
+
+	target_include_directories(
+		test_multi_compute_size
+			PRIVATE src)
+
+	target_compile_options(
+		test_multi_compute_size
+			PRIVATE ${TEST_COMPILE_FLAGS})
+
+	target_link_libraries(
+		test_multi_compute_size
+			smecc)
 endif(SMECC_COMPILE_TESTS)
