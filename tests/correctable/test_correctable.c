@@ -128,7 +128,7 @@ static
 void
 flipbit(uint8_t *buffer, unsigned int bit)
 {
-//fprintf(stderr, "Flipping bit %u at %u\n", bit & 0x7, bit >> 3);
+//ffprintf(stderr, stderr, "Flipping bit %u at %u\n", bit & 0x7, bit >> 3);
 	buffer[bit >> 3] ^= (1 << (bit & 0x7));
 }
 
@@ -165,13 +165,15 @@ test_input(const uint8_t *input, const char *name)
 			/* Verify */
 			if(memcmp(buffer, input, SMECC_BLOCK_SIZE) != 0)
 			{
-				printf("FAIL - %s / not corrected\n", name);
+				fprintf(stderr,
+					"FAIL - %s / not corrected\n", name);
 				return false;
 			}
 		}
 		else
 		{
-			printf("FAIL - %s / unexpected error\n", name);
+			fprintf(stderr,
+				"FAIL - %s / unexpected error\n", name);
 			return false;
 		}
 	}
@@ -198,7 +200,7 @@ main(int argc, char **argv)
 		rc = 1;
 
 	if(rc == 0)
-		puts("PASSED\n");
+		fputs("PASSED\n", stderr);
 
 	return rc;
 }

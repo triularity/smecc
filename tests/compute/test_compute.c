@@ -135,7 +135,8 @@ main(int argc, char **argv)
 
 	if(ecc != 0x00000cff)
 	{
-		printf("FAIL - uniform / 0x%08x != 0x00000cff\n", ecc);
+		fprintf(stderr,
+			"FAIL - uniform / 0x%08x != 0x00000cff\n", ecc);
 		rc = 1;
 	}
 
@@ -143,7 +144,8 @@ main(int argc, char **argv)
 
 	if(ecc != 0x006565ab)
 	{
-		printf("FAIL - random1 / 0x%08x != 0x006565ab\n", ecc);
+		fprintf(stderr,
+			"FAIL - random1 / 0x%08x != 0x006565ab\n", ecc);
 		rc = 1;
 	}
 
@@ -151,12 +153,13 @@ main(int argc, char **argv)
 
 	if(ecc != 0x00ffcfff)
 	{
-		printf("FAIL - random2 / 0x%08x != 0x00ffcfff\n", ecc);
+		fprintf(stderr,
+			"FAIL - random2 / 0x%08x != 0x00ffcfff\n", ecc);
 		rc = 1;
 	}
 
 	if(rc == 0)
-		puts("PASSED\n");
+		fputs("PASSED\n", stderr);
 
 	return rc;
 }
