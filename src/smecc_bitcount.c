@@ -10,11 +10,7 @@
 
 #include "smecc_impl.h"
 
-#ifdef	_smecc_bitcount
-#undef	_smecc_bitcount
-#endif
-
-#ifdef	SMCECC_USE_LOOKUPS
+#ifdef	SMECC_USE_LOOKUPS
 static
 const uint8_t	bitcount_table8[256] =
 {
@@ -79,9 +75,13 @@ _smecc_bitcount
 
 	return count;
 }
-#else	/* SMCECC_USE_LOOKUPS */
+#else	/* SMECC_USE_LOOKUPS */
 
-#ifndef	__GNUC__
+
+#ifndef	_smecc_bitcount
+/*
+ * Fallback implementation, if not a macro
+ */
 static
 const uint8_t	bitcount_table4[16] =
 {
@@ -109,6 +109,6 @@ _smecc_bitcount
 
 	return count;
 }
-#endif	/* __GNUC__ */
+#endif	/* !_smecc_bitcount */
 
-#endif	/* SMCECC_USE_LOOKUPS */
+#endif	/* SMECC_USE_LOOKUPS */

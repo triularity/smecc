@@ -76,7 +76,7 @@ parity_table[256] =
 };
 
 
-#ifdef	SMCECC_USE_LOOKUPS
+#ifdef	SMECC_USE_LOOKUPS
 /*
  * Expand bits to the left, with a single bit gap between the original bits.
  *
@@ -122,7 +122,7 @@ bitexpand_table[256] =
 
 #define	EXPAND_BITS(x)	bitexpand_table[x]
 
-#else	/* SMCECC_USE_LOOKUPS */
+#else	/* SMECC_USE_LOOKUPS */
 
 #define	EXPAND_BITS(x)	((((x) & 0x80) << (14-7)) \
 			| (((x) & 0x40) << (12-6)) \
@@ -132,7 +132,8 @@ bitexpand_table[256] =
 			| (((x) & 0x04) << ( 4-2)) \
 			| (((x) & 0x02) << ( 2-1)) \
 			| (((x) & 0x01) << ( 0-0)))
-#endif	/* SMCECC_USE_LOOKUPS */
+
+#endif	/* SMECC_USE_LOOKUPS */
 
 
 smecc_t

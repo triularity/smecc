@@ -5,7 +5,7 @@ cmake_minimum_required(VERSION 2.8.12)
 #
 # Defaults
 #
-set(SCECC_USE_LOOKUPS TRUE CACHE BOOL "Use Lookup Table")
+set(SMECC_USE_LOOKUPS TRUE CACHE BOOL "Use Lookup Table")
 set(SMECC_WARNFREE FALSE CACHE BOOL "Enable Error on Compile Warnings")
 set(SMECC_COMPILE_EXAMPLES FALSE CACHE BOOL "Compile Example Code")
 set(SMECC_COMPILE_TESTS TRUE CACHE BOOL "Compile Unit Tests")
@@ -30,20 +30,18 @@ set(SMECC_SOURCE_FILES
 
 
 #
-# Configuration Options
-#
-if(SMCECC_USE_LOOKUPS)
-	add_definitions("-DSMCECC_USE_LOOKUPS")
-endif()
-
-
-#
 # [lib]smecc
 #
 add_library(
 	smecc
 		${SMECC_SOURCE_FILES}
 		${SMECC_HEADER_FILES})
+
+if(SMECC_USE_LOOKUPS)
+	target_compile_definitions(
+		smecc
+			PRIVATE "-DSMECC_USE_LOOKUPS")
+endif()
 
 
 #
@@ -179,6 +177,4 @@ if(SMECC_COMPILE_TESTS)
 	target_link_libraries(
 		test_correctable
 			smecc)
-
 endif(SMECC_COMPILE_TESTS)
-

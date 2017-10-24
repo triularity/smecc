@@ -71,7 +71,7 @@ extern "C" {
 int				_smecc_bitcount(uint32_t value);
 
 
-#if	defined(__GNUC__) && !defined(SMCECC_USE_LOOKUPS)
+#if	defined(__GNUC__) && !defined(SMECC_USE_LOOKUPS)
 #define	_smecc_bitcount(value)	__builtin_popcount(value)
 #endif
 
