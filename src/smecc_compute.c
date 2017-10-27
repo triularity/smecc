@@ -142,7 +142,7 @@ smecc_compute
 	const uint8_t *data
 )
 {
-	uint8_t		cp;		/* CP{00,01,02,03,04,05} */
+	uint8_t		cp;		/* CP{0,1,2,3,4,5} */
 	uint8_t		lp_odd;		/* LP{01,03,05,...,13,15} */
 	uint8_t		lp_even;	/* LP{00,02,04,...,12,14} */
 	size_t		i;
