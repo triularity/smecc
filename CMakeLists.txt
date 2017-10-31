@@ -131,6 +131,56 @@ install(
 # Sample Code
 #
 if(SMECC_COMPILE_EXAMPLES)
+	#
+	# ECC Reader
+	#
+	add_executable(
+		example_eccread
+			examples/ecctools/eccread.c
+			examples/ecctools/eccfile.h
+			${SMECC_HEADER_FILES})
+
+	target_include_directories(
+		example_eccread
+			PRIVATE src)
+
+	target_link_libraries(
+		example_eccread
+			smecc)
+
+	#
+	# ECC Writer
+	#
+	add_executable(
+		example_eccwrite
+			examples/ecctools/eccwrite.c
+			examples/ecctools/eccfile.h
+			${SMECC_HEADER_FILES})
+
+	target_include_directories(
+		example_eccwrite
+			PRIVATE src)
+
+	target_link_libraries(
+		example_eccwrite
+			smecc)
+
+	#
+	# ECC Verifier
+	#
+	add_executable(
+		example_eccverify
+			examples/ecctools/eccverify.c
+			examples/ecctools/eccfile.h
+			${SMECC_HEADER_FILES})
+
+	target_include_directories(
+		example_eccverify
+			PRIVATE src)
+
+	target_link_libraries(
+		example_eccverify
+			smecc)
 endif(SMECC_COMPILE_EXAMPLES)
 
 
