@@ -136,6 +136,13 @@ bitexpand_table[256] =
 #endif	/* SMECC_USE_LOOKUPS */
 
 
+/**
+ * Compute an ECC.
+ *
+ * @param	data		The data (of {@link SMECC_BLOCK_SIZE} size).
+ *
+ * @return	The computed ECC.
+ */
 smecc_t
 smecc_compute
 (

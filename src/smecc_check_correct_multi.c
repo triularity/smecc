@@ -13,6 +13,24 @@
 #include "smecc.h"
 
 
+/**
+ * Check ECC(s), correcting the data if necessary/possible.
+ *
+ * @param	data		The data buffer (of {@link SMECC_BLOCK_SIZE}
+ *				multiple size).
+ * @param	length		The length of the data.
+ * @param	data_ecc	The ECC(s) calculated from the data.
+ * @param	check_ecc	The previously calculated ECC(s).
+ * @param	ecc_count	The number of ECC(s).
+ *
+ * @return	{@link SMECC_STATUS_BADLEN} if {@param length} isn't a
+ *		multiple of {@link SMECC_BLOCK_SIZE} or {@param ecc_count}
+ *		is too small for {@length}, {@link SMECC_STATUS_OK} if all
+ *		the ECCs match, {@link SMECC_STATUS_CORRECTED} if the data
+ *		or ECC has a correctable error,
+ *		or {@link SMECC_STATUS_UNCORRECTABLE} if there is
+ *		an uncorrectable error.
+ */
 smecc_status_t
 smecc_check_correct_multi
 (

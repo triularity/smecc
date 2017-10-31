@@ -10,6 +10,14 @@
 #include "smecc.h"
 
 
+/**
+ * Deserialize ECC data that was serialized with {@link smecc_serialize()}.
+ *
+ * @param	buf		The serialization buffer (of
+ *				{@link SMECC_SERIALIZED_SIZE} size).
+ *
+ * @return	The ECC value.
+ */
 smecc_t
 smecc_deserialize
 (

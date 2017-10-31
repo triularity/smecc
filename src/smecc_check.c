@@ -11,6 +11,18 @@
 #include "smecc_impl.h"
 
 
+/**
+ * Check an ECC to another.
+ *
+ * @param	data_ecc	The ECC calculated from the data.
+ * @param	check_ecc	The previously calculated ECC.
+ *
+ * @return	{@link SMECC_STATUS_OK} if the ECCs match,
+ *		{@link SMECC_STATUS_CORRECTABLE} if the data has a
+ *		correctable error, {@link SMECC_STATUS_CORRECTED} if the ECC
+ *		has a correctable error, or {@link SMECC_STATUS_UNCORRECTABLE}
+ *		if there is an uncorrectable error.
+ */
 smecc_status_t
 smecc_check
 (

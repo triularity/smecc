@@ -40,43 +40,87 @@ extern "C" {
  */
 #define	SMECC_LIB_VERSION_MAJOR		0
 #define	SMECC_LIB_VERSION_MINOR		9
-#define	SMECC_LIB_VERSION_PATCH		0
+#define	SMECC_LIB_VERSION_PATCH		1
 #define	SMECC_LIB_VERSION		((SMECC_LIB_VERSION_MAJOR << 16) | (SMECC_LIB_VERSION_MINOR << 8) | SMECC_LIB_VERSION_PATCH)
 
-/*
- * The per-ECC block size
+/**
+ * The per-ECC block size.
  */
 #define	SMECC_BLOCK_SIZE		256
 
-/*
- * The size of ECC in byte form
+/**
+ * The size of ECC in byte form.
  */
 #define	SMECC_SERIALIZED_SIZE		3
 
+/**
+ * A status code.
+ */
 typedef enum
 {
-	SMECC_STATUS_OK,		/* No errors */
-	SMECC_STATUS_CORRECTABLE,	/* Data error and is correctable */
-	SMECC_STATUS_CORRECTED,		/* Data error was corrected */
-	SMECC_STATUS_UNCORRECTABLE,	/* Data is uncorrectable */
-	SMECC_STATUS_BADLEN		/* Invalid data/ecc lengths */
+	SMECC_STATUS_OK,		/** No errors */
+	SMECC_STATUS_CORRECTABLE,	/** Data error and is correctable */
+	SMECC_STATUS_CORRECTED,		/** Data error was corrected */
+	SMECC_STATUS_UNCORRECTABLE,	/** Data is uncorrectable */
+	SMECC_STATUS_BADLEN		/** Invalid data/ecc lengths */
 } smecc_status_t;
 
-/*
- * ECC data
+/**
+ * An ECC.
  */
 typedef uint32_t		smecc_t;
 
+/**
+ * The bit shift of the Column-Parity component of an {@link smecc_t}.
+ */
 #define	SMECC_CP_SHIFT		0
+
+/**
+ * The bit mask of the Column-Parity component of an {@link smecc_t}.
+ */
 #define	SMECC_CP_MASK		0x000000FF
+
+/**
+ * Get the Column-Parity component of an {@link smecc_t}.
+ *
+ * @param	ecc		An ECC.
+ */
 #define	SMECC_CP_GET(ecc)	(((ecc) & SMECC_CP_MASK) >> SMECC_CP_SHIFT)
+
+/**
+ * Create the Column-Parity component for an {@link smecc_t}.
+ *
+ * @param	cp		The Column-Parity value (8-bit).
+ */
 #define	SMECC_CP_MAKE(cp)	(((cp) << SMECC_CP_SHIFT) & SMECC_CP_MASK)
 
+/**
+ * The bit shift of the Line-Parity component of an {@link smecc_t}.
+ */
 #define	SMECC_LP_SHIFT		8
+
+/**
+ * The bit mask of the Line-Parity component of an {@link smecc_t}.
+ */
 #define	SMECC_LP_MASK		0x00FFFF00
+
+/**
+ * Get the Line-Parity component of an {@link smecc_t}.
+ *
+ * @param	ecc		An ECC.
+ */
 #define	SMECC_LP_GET(ecc)	(((ecc) & SMECC_LP_MASK) >> SMECC_LP_SHIFT)
+
+/**
+ * Create the Line-Parity component for an {@link smecc_t}.
+ *
+ * @param	lp		The Line-Parity value (16-bit).
+ */
 #define	SMECC_LP_MAKE(lp)	(((lp) << SMECC_LP_SHIFT) & SMECC_LP_MASK)
 
+/**
+ * Filler bits of the Column-Parity component.
+ */
 #define	SMECC_FILLER		0x00000003
 
 

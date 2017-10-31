@@ -49,6 +49,13 @@ const uint8_t	bitcount_table8[256] =
 };
 
 
+/**
+ * Count the number of set bits.
+ *
+ * @param	value		The value to count bits for.
+ *
+ * @return	The number of bits set to {@code 1}.
+ */
 int
 _smecc_bitcount
 (

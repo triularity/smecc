@@ -13,6 +13,20 @@
 #include "smecc.h"
 
 
+/**
+ * Compute multiple ECCs.
+ *
+ * @param	data		The data buffer (of {@link SMECC_BLOCK_SIZE}
+ *				multiple size).
+ * @param	length		The length of the data.
+ * @param	ecc		The computed ECC(s).
+ * @param	ecc_count	The number of ECC(s).
+ *
+ * @return	{@link SMECC_STATUS_BADLEN} if {@param length} isn't a
+ *		multiple of {@link SMECC_BLOCK_SIZE} or {@param ecc_count}
+ *		is too small for {@param length},
+ *		{@link SMECC_STATUS_OK} if there were no errors.
+ */
 smecc_status_t
 smecc_compute_multi
 (

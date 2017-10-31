@@ -7,8 +7,6 @@
  * http://www.triularity.org/
  */
 
-//#include <stdio.h>
-
 #include <stddef.h>
 #include <stdint.h>
 
@@ -16,6 +14,19 @@
 #include "smecc_impl.h"
 
 
+/**
+ * Check an ECC, correcting the data if necessary/possible.
+ *
+ * @param	data		The data buffer (of {@link SMECC_BLOCK_SIZE}
+ *				size).
+ * @param	data_ecc	The ECC calculated from the data.
+ * @param	check_ecc	The previously calculated ECC.
+ *
+ * @return	{@link SMECC_STATUS_OK} if the ECCs match,
+ *		{@link SMECC_STATUS_CORRECTED} if the data or ECC has a
+ *		correctable error, or {@link SMECC_STATUS_UNCORRECTABLE}
+ *		if there is an uncorrectable error.
+ */
 smecc_status_t
 smecc_check_correct
 (
@@ -55,7 +66,6 @@ smecc_check_correct
 			| ((xor >> (SMECC_CP3_SHIFT-1)) & 0x02)
 			| ((xor >> (SMECC_CP5_SHIFT-2)) & 0x04);
 
-//fprintf(stderr, "Correcting bit %u at %u\n", bit, offset);
 		data[offset] ^= (uint8_t) (1 << bit);
 
 		return SMECC_STATUS_CORRECTED;

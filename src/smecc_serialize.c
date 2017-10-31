@@ -10,6 +10,15 @@
 #include "smecc.h"
 
 
+/**
+ * Serialize ECC data.
+ *
+ * @param	ecc		The ECC to serialize.
+ * @param	buf		The serialization buffer (of
+ *				{@link SMECC_SERIALIZED_SIZE} size).
+ *
+ * @see		smecc_deserialize(uint8_t *)
+ */
 void
 smecc_serialize
 (
